@@ -10,8 +10,20 @@ function update() {
     sudo apt-get update
 }
 
-update
-installNecessary
+function appendPath() {
+    echo $1 >> path.txt
+}
+
+function appendAlias() {
+    cat $1 >> alias.txt
+}
+
+function cleanUp() {
+    rm alias.txt path.txt *.deb
+}
+
+# update
+# installNecessary
 
 while getopts "iknt" OPTION
 do
@@ -30,3 +42,5 @@ do
             ;;
 	esac
 done
+
+cleanUp

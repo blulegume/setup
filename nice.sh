@@ -22,8 +22,14 @@ function getOhMyZsh() {
 
 function installNice() {
     echo "Installing nice-to-haves"
+
     getOhMyZsh
     getChrome
     getGotop
     getNvm
+    
+    cat alias.txt style.txt path.txt >> $HOME/.zshrc
+    cat path.txt >> $HOME/.bashrc
+
+    source .bashrc
 }

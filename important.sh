@@ -1,7 +1,9 @@
 function getDocker() {
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh get-docker.sh
-    sudo usermod -aG docker $(whoami)
+    # curl -fsSL https://get.docker.com -o get-docker.sh
+    # sudo sh get-docker.sh
+    # sudo usermod -aG docker $(whoami)
+
+    appendAlias ./alias/docker.txt
 }
 
 function getKubeCtl() {
@@ -19,6 +21,8 @@ function getNode() {
     curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
     sudo apt-get install -y nodejs
     NODE_INSTALLED=true
+
+    appendAlias ./alias/node.txt
 }
 
 function getGo() {
@@ -26,11 +30,15 @@ function getGo() {
     sudo tar -C /usr/local -xzf go1.15.8.linux-amd64.tar.gz
     
     mkdir -p $HOME/go/{bin,src}
+
+    appendPath 'export PATH=$PATH:/usr/local/go/bin'
 }
 
 function getHomebrew() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     HOMEBREW_INSTALLED=true
+
+    appendPath 'export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin'
 }
 
 function installImportant() {

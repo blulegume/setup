@@ -1,0 +1,9 @@
+
+
+# for pure
+fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit
+zstyle :prompt:pure:git:dirty color yellow
+zstyle :prompt:pure:prompt:success color green
+prompt pure
+
