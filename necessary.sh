@@ -3,9 +3,11 @@ function getVsCode() {
 }
 
 function installNecessary() {
-    echo "Installing necessary programs"
+    displayStepTitle "Installing necessary programs"
 
     update
+    overwrite "vs code"
     getVsCode
+    overwrite "command line utils"
     apt install -y vim git zsh curl wget ./code.deb
 }

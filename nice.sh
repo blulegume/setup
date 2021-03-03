@@ -1,35 +1,33 @@
 function getChrome() {
+    overwrite "chrome"
     wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo apt install ./chrome.deb
 }
 
 function getGotop() {
+    overwrite "gotop"
     git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop
     /tmp/gotop/scripts/download.sh
-    #make sure to add gotop to $PATH
 }
 
 function getNvm() {
-    if [[ $NODE_INSTALLED ]]
-    then
-        wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-    fi
+    overwrite "nvm"
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+
 }
 
 function getOhMyZsh() {
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    overwrite "oh-my-zsh"
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 }
 
 function installNice() {
-    echo "Installing nice-to-haves"
+    displayStepTitle "Installing nice-to-haves"
 
     getOhMyZsh
     getChrome
     getGotop
     getNvm
-    
-    cat alias.txt style.txt path.txt >> $HOME/.zshrc
-    cat path.txt >> $HOME/.bashrc
 
-    source .bashrc
+    cat alias.txt style.txt path.txt >> $HOME/.zshrc
 }

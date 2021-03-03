@@ -4,11 +4,11 @@ function getPure() {
 }
 
 function getTonight() {
-    echo "installing tonight"
+    overwrite "installing tonight"
 }
 
 function installThemes() {
-    echo "installing themes"
+    overwrite "installing themes"
 
     getPure
     getTonight

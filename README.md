@@ -24,9 +24,9 @@
 ## Nice to have
 
 - chrome
-- oh-my-zsh
 - gotop
 - nvm
+- oh-my-zsh
 
 ## Themes
 

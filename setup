@@ -1,0 +1,55 @@
+#!/usr/bin/bash
+
+. ./necessary.sh 
+. ./important.sh 
+. ./k8s.sh 
+. ./nice.sh 
+. ./themes.sh
+. ./util.sh
+
+ensureNoRoot
+
+while [ ! $# -eq 0 ]
+do  
+    case "$1" in 
+        --help | -h)
+            usage
+            exit
+            ;;
+        --all | -a)
+            update
+            installNecessary
+            installImportant
+            installNice
+            installK8sTools
+            installThemes
+            exit
+            ;;
+        --min | -m)
+            update
+            installNecessary
+            exit
+            ;;
+        -i)
+            update
+            installImportant
+            ;;
+        -n)
+            update
+            installNice
+            ;;
+        -k)
+            installK8sTools
+            ;;
+        -t)
+            installThemes
+            ;;
+        *)
+            usage
+            exit
+            ;;
+    esac
+    shift
+done
+
+cleanUp
